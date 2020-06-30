@@ -8,6 +8,7 @@ const passport = require("passport");
 const cookieSession = require("cookie-session");
 
 const authRouter = require("./routes/authRoutes");
+const notesRouter = require("./routes/notesRoutes");
 
 require("./services/Passport");
 
@@ -43,6 +44,7 @@ app.get("/", function (req, res) {
 });
 
 app.use("/auth", authRouter);
+app.use("/api/v1", notesRouter);
 
 const port = process.env.PORT || 8000;
 
