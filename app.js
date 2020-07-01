@@ -1,16 +1,16 @@
 require("dotenv").config();
 require("./models/User");
 require("./models/Note");
+require("./services/Passport");
 
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
+const cors = require("cors");
 
 const authRouter = require("./routes/authRoutes");
 const notesRouter = require("./routes/notesRoutes");
-
-require("./services/Passport");
 
 mongoose.connect(
   process.env.MONGODB_URI,
@@ -25,6 +25,16 @@ mongoose.connect(
 );
 
 const app = express();
+
+const corsConfig = {
+  origin: "http://localhost:3000",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 200,
+  credentials: true,
+};
+
+app.use(cors(corsConfig));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
