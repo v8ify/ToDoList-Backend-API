@@ -24,10 +24,11 @@ router.post("/notes", async (req, res) => {
   res.json(savedNote);
 });
 
-router.delete("/notes/:id", async (req, res) => {
+router.delete("/notes/:taskId", async (req, res) => {
   try {
-    await Note.findByIdAndDelete(req.params.id);
-    res.json({ success: true });
+    const note = await Note.findById(req.params.taskId);
+    await note.remove();
+    res.json(note);
   } catch (err) {
     res.json({ success: false });
   }

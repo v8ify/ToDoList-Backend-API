@@ -12,6 +12,7 @@ const cors = require("cors");
 const authRouter = require("./routes/authRoutes");
 const notesRouter = require("./routes/notesRoutes");
 
+// Database connection
 mongoose.connect(
   process.env.MONGODB_URI,
   { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true },
@@ -26,6 +27,7 @@ mongoose.connect(
 
 const app = express();
 
+//configuration files for CORS for handling requests from frontend
 const corsConfig = {
   origin: "http://localhost:3000",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -39,6 +41,7 @@ app.use(cors(corsConfig));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Setting cookies
 app.use(
   cookieSession({
     maxAge: 15 * 24 * 60 * 60 * 1000,
@@ -53,6 +56,7 @@ app.get("/", function (req, res) {
   res.send("Server working!");
 });
 
+// Routes middlewares
 app.use("/auth", authRouter);
 app.use("/api/v1", notesRouter);
 
