@@ -1,5 +1,8 @@
 {
   "name": "to-do-list-backend",
+  "engines": {
+    "node": "12.18.1"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

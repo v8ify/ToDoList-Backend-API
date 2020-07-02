@@ -34,4 +34,16 @@ router.delete("/notes/:taskId", async (req, res) => {
   }
 });
 
+router.patch("/notes/:taskId", async (req, res) => {
+  console.log(req.body);
+  try {
+    let note = await Note.findByIdAndUpdate(req.params.taskId, req.body, {
+      new: true,
+    });
+    res.json(note);
+  } catch (err) {
+    res.json({ success: false });
+  }
+});
+
 module.exports = router;

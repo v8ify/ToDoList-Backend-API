@@ -15,7 +15,12 @@ const notesRouter = require("./routes/notesRoutes");
 // Database connection
 mongoose.connect(
   process.env.MONGODB_URI,
-  { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true },
+  {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  },
   err => {
     if (err) {
       console.log(err);
