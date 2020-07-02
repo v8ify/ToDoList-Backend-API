@@ -11,7 +11,7 @@ router.get(
 );
 
 router.get("/google/callback", passport.authenticate("google"), (req, res) => {
-  res.redirect("http://localhost:3000/dashboard");
+  res.redirect(`${process.env.FRONTEND_CLIENT}/dashboard`);
 });
 
 router.get("/current_user", (req, res) => {
@@ -20,7 +20,7 @@ router.get("/current_user", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("http://localhost:3000/");
+  res.redirect(`${process.env.FRONTEND_CLIENT}/`);
 });
 
 module.exports = router;

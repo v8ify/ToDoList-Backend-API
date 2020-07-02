@@ -34,7 +34,7 @@ const app = express();
 
 //configuration files for CORS for handling requests from frontend
 const corsConfig = {
-  origin: "http://localhost:3000",
+  origin: process.env.FRONTEND_CLIENT,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 200,
